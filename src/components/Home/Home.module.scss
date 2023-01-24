@@ -1,0 +1,56 @@
+@import "../../index.scss";
+
+.carousel_item {
+  outline: none;
+  .inner_item {
+    margin: auto;
+  }
+}
+
+.green_brdr_bottom {
+  border-bottom: 1px solid $greenColor;
+}
+
+.see_all_link {
+  @include link($greenColor, $blackColor);
+  &:hover {
+    letter-spacing: 2px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .inner_item {
+    min-height: 9.2rem;
+    max-height: 15.4rem;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  .inner_item {
+    min-height: 14.7rem;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .inner_item {
+    min-height: 20rem;
+  }
+}
+
+@media screen and (min-width: 991px) and (max-width: 1200px) {
+  .inner_item {
+    min-height: 27rem;
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+  .inner_item {
+    min-height: 32.2rem;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .inner_item {
+    min-height: 37.5rem;
+  }
+}

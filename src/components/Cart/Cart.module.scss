@@ -1,0 +1,48 @@
+@import "../../index.scss";
+
+.heading_brdr {
+  border-bottom: 1px solid $midGreyColor;
+}
+
+.continue_shop_link {
+  @include link($greenColor, $darkGreyColor);
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  &:hover {
+    letter-spacing: 2px;
+  }
+}
+
+.summary_box {
+  background-color: $offWhiteColor;
+  border-radius: 8px;
+}
+
+.empty_cart_btn {
+  @include btn($redColor, $whiteColor, $redColor, $transparentColor, $redColor, $redColor);
+}
+
+.checkout_btn {
+  @include btn($greenColor, $whiteColor, $greenColor, $transparentColor, $greenColor, $greenColor);
+}
+
+.empty_cart_img {
+  width: 120px;
+}
+
+.alert_unregitered,
+.alert_registered {
+  background-color: $transparentColor;
+  border: 1px solid;
+}
+
+.alert_unregitered {
+  border-color: $redColor !important;
+  color: $redColor !important;
+}
+
+.alert_registered {
+  border-color: $greenColor !important;
+  color: $greenColor !important;
+}

@@ -1,0 +1,13 @@
+@import "../../../index.scss";
+
+.row_brdr {
+  border-bottom: 1px solid $lightGreyColor;
+}
+
+.cart_product_img_container {
+  @include cartImgContainer(75px, 75px, 75px, 75px);
+}
+
+.del_prod {
+  @include cartProductBtn($lightGreyColor, $whiteColor, $lightGreyColor, $whiteColor, $redColor);
+}

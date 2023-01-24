@@ -1,0 +1,67 @@
+@import "../../../index.scss";
+
+.stepper {
+  .line {
+    height: 2px;
+    background-color: $greenColor;
+  }
+  h3 {
+    font-size: 14px;
+  }
+  .step_circle {
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+    font-weight: 700;
+    background-color: $lightGreyColor;
+    color: $darkGreyColor;
+    @extend .d-flex-rules;
+  }
+  .active {
+    .step_circle {
+      background-color: $transparentColor;
+      border: 2px solid $greenColor;
+      color: $whiteColor;
+    }
+  }
+  .done {
+    .step_circle {
+      background-color: $greenColor;
+      color: $whiteColor;
+    }
+  }
+}
+
+.prod_img_cont {
+  @include cartImgContainer(85px, 85px, 85px, 85px);
+  position: relative;
+  .quantity_circle {
+    @extend .d-flex-rules;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 4px solid $whiteColor;
+    background-color: $greenColor;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    color: $whiteColor;
+    font-size: 16px;
+    font-weight: 800;
+  }
+}
+
+.discount_btn {
+  @include btn($greenColor, $whiteColor, $greenColor, $darkGreyColor, $whiteColor, $darkGreyColor);
+}
+
+.promo_code_input {
+  border: 1px solid $lightGreyColor !important;
+  background-color: $lightGreyColor !important;
+  transition: all 0.2s !important;
+  &:focus {
+    background-color: $whiteColor !important;
+    border: 1px solid $greenColor !important;
+  }
+}

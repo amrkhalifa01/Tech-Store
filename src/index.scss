@@ -1,0 +1,466 @@
+@import "./colors";
+@import "./mixins.scss";
+@import url("https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap");
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: $lightGreyColor;
+}
+
+::-webkit-scrollbar-thumb {
+  &:hover {
+    background-color: $darkGreyColor;
+  }
+  background-color: $midGreyColor;
+  border-radius: 8px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  cursor: pointer;
+  height: 20px;
+  content: url("./images/removeRed.png");
+}
+
+body {
+  font-family: "Chakra Petch", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+}
+
+.d-flex-rules {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-height {
+  height: 121px;
+  width: 100%;
+}
+
+.custom-height {
+  min-height: calc(100vh - 121px);
+}
+
+.products-heading {
+  position: relative;
+  h1 {
+    font-size: 6em;
+    color: $offWhiteColor;
+    font-weight: 200;
+    text-align: center;
+    letter-spacing: 5px;
+    filter: blur(1px);
+  }
+  h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5em;
+    font-weight: 700;
+    color: $lightBlack !important;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      border-radius: 10px;
+      background-color: $greenColor;
+    }
+  }
+}
+
+.product {
+  &:hover {
+    box-shadow: 0px 0px 15px 1px $lightGreyColor;
+  }
+  transition: all 0.2s;
+}
+
+.hexagon {
+  position: relative;
+  height: 50px;
+  width: 50px;
+  background: $lightGreyColor;
+}
+
+.hexagon-inner {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  height: calc(100% - 6px);
+  width: calc(100% - 6px);
+  background: $whiteColor;
+  font-size: 18px;
+  font-weight: 700;
+  color: $lightGreyColor;
+  @extend .d-flex-rules;
+}
+
+.active-hexagon {
+  background-color: $greenColor;
+  .hexagon-inner {
+    background-color: $whiteColor;
+    color: $greenColor;
+  }
+}
+
+.hexagon,
+.hexagon-inner {
+  -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.pagination-next,
+.pagination-prev {
+  background-color: $transparentColor;
+  border: none;
+}
+
+.alert-out-of-stock {
+  filter: grayscale(100%);
+}
+
+.common-btn {
+  @include btn($greenColor, $whiteColor, $greenColor, $transparentColor, $greenColor, $greenColor);
+  &:hover {
+    letter-spacing: 1.5px;
+  }
+}
+
+.out-of-stock {
+  @include btn($transparentColor, $redColor, $redColor, $transparentColor, $redColor, $redColor);
+}
+
+.mouse-not-allowed {
+  cursor: not-allowed !important;
+}
+
+.img-dimensions {
+  width: 250px !important;
+  height: 250px !important;
+}
+
+.light-brdr-bottom {
+  border-bottom: 1px solid $lightGreyColor;
+}
+
+.green-brdr-bottom {
+  border-bottom: 1px solid $greenColor;
+}
+
+.bg-color-stroke {
+  @include bgStrockDesign($lightBlack);
+}
+
+.input-brdr-green:focus {
+  border: 1px solid $greenColor !important;
+}
+
+.text-green {
+  color: $greenColor !important;
+}
+
+.text-light-grey {
+  color: $lightGreyColor !important;
+}
+
+.text-dark-grey {
+  color: $darkGreyColor !important;
+}
+
+.text-light-black {
+  color: $lightBlack !important;
+}
+
+.form-container {
+  @include bgStrockDesign($lightGreyColor);
+  position: relative;
+  .form-icon {
+    outline: 4px dotted #353535;
+    outline-offset: 3px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 30px;
+    transform: translateY(-50%);
+    color: $darkGreyColor;
+    font-size: 23px;
+    background-color: $whiteColor;
+    @extend .d-flex-rules;
+  }
+}
+
+.auth-form {
+  input {
+    background-color: $lightGreyColor;
+    transition: all 0.5s !important;
+    &:focus {
+      border: 1px solid $greenColor;
+    }
+  }
+  select {
+    background-color: $lightGreyColor;
+    transition: all 0.3s !important;
+    option:active,
+    option:hover,
+    option:focus,
+    option:checked {
+      color: $whiteColor !important;
+      background: $greenColor !important;
+    }
+    &:focus {
+      background-color: $whiteColor;
+      border: 1px solid $greenColor;
+    }
+  }
+}
+
+.login-form,
+.register-form {
+  width: 100%;
+}
+
+.quantity-box {
+  width: fit-content;
+  border: 1px solid $lightGreyColor;
+  @extend .d-flex-rules;
+  .quantity {
+    font-size: 18px;
+    font-weight: 800;
+    color: $darkGreyColor;
+  }
+  .quantity-btn {
+    @include cartProductBtn($lightGreyColor, $whiteColor, $lightGreyColor, $whiteColor, $greenColor);
+  }
+}
+
+.chk-form-btn {
+  @include btn($lightGreyColor, $lightBlack, $lightGreyColor, $transparentColor, $lightGreyColor, $lightGreyColor);
+  &:hover {
+    letter-spacing: 1.5px;
+    font-weight: 700;
+  }
+}
+
+.summary-sec-brdr {
+  border-bottom: 1px dashed $darkGreyColor;
+}
+
+.small-font {
+  font-size: 14px !important;
+}
+
+.mouse-pointer {
+  cursor: pointer;
+}
+
+.offcanvas-customize {
+  width: 300px !important;
+  z-index: 99999;
+}
+
+.close-offcanvas {
+  width: 35px;
+  height: 35px;
+  border: none;
+  background-color: $whiteColor;
+  color: $redColor;
+  border-radius: 50%;
+  box-shadow: 0px 0px 3px 0.5px $darkGreyColor;
+  position: absolute;
+  right: 0;
+  top: 20px;
+  transform: translateX(50%);
+  @extend .d-flex-rules;
+}
+
+.social-circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 20px;
+  margin: 0 3px;
+  background-color: $whiteColor;
+  color: $greenColor;
+  transition: all 0.2s;
+  @extend .d-flex-rules;
+  &:hover {
+    background-color: $greenColor;
+    color: $whiteColor;
+  }
+  &:hover i {
+    transform: scale(1.2);
+  }
+  i {
+    transition: all 0.2s;
+  }
+}
+
+.loader-container {
+  & {
+    height: 100vh;
+    background-color: $whiteColor;
+    position: fixed;
+    inset: 0;
+    z-index: 998;
+    @extend .d-flex-rules;
+  }
+}
+.loader {
+  --path: #3e3e3e;
+  --dot: #07db96;
+  --duration: 3s;
+  width: 44px;
+  height: 44px;
+  position: relative;
+  display: inline-block;
+  margin: 0 16px;
+  &:before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    position: absolute;
+    display: block;
+    background: var(--dot);
+    top: 37px;
+    left: 19px;
+    transform: translate(-18px, -18px);
+    animation: dotRect var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+  }
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    rect,
+    circle,
+    polygon {
+      fill: none;
+      stroke: var(--path);
+      stroke-width: 10px;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+    rect {
+      stroke-dasharray: (256 / 4 * 3) (256 / 4) (256 / 4 * 3) (256 / 4);
+      stroke-dashoffset: 0;
+      animation: pathRect 3s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+    }
+    circle {
+      stroke-dasharray: (200 / 4 * 3) (200 / 4) (200 / 4 * 3) (200 / 4);
+      stroke-dashoffset: 75;
+      animation: pathCircle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+    }
+    polygon {
+      stroke-dasharray: 145 (221 - 145) 145 (221 - 145);
+      stroke-dashoffset: 0;
+      animation: pathTriangle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+    }
+  }
+  &.triangle {
+    width: 48px;
+    &:before {
+      left: 21px;
+      transform: translate(-10px, -18px);
+      animation: dotTriangle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+    }
+  }
+}
+
+@keyframes pathRect {
+  25% {
+    stroke-dashoffset: 64;
+  }
+  50% {
+    stroke-dashoffset: 128;
+  }
+  75% {
+    stroke-dashoffset: 192;
+  }
+  100% {
+    stroke-dashoffset: 256;
+  }
+}
+
+@keyframes dotRect {
+  25% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(18px, -18px);
+  }
+  75% {
+    transform: translate(0, -36px);
+  }
+  100% {
+    transform: translate(-18px, -18px);
+  }
+}
+
+@keyframes pathTriangle {
+  33% {
+    stroke-dashoffset: 74;
+  }
+  66% {
+    stroke-dashoffset: 147;
+  }
+  100% {
+    stroke-dashoffset: 221;
+  }
+}
+
+@keyframes dotTriangle {
+  33% {
+    transform: translate(0, 0);
+  }
+  66% {
+    transform: translate(10px, -18px);
+  }
+  100% {
+    transform: translate(-10px, -18px);
+  }
+}
+
+@keyframes pathCircle {
+  25% {
+    stroke-dashoffset: 125;
+  }
+  50% {
+    stroke-dashoffset: 175;
+  }
+  75% {
+    stroke-dashoffset: 225;
+  }
+  100% {
+    stroke-dashoffset: 275;
+  }
+}
+
+html {
+  scroll-behavior: unset !important;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+}

@@ -1,0 +1,55 @@
+@import "./colors";
+@import "./mixins";
+
+@media screen and (max-width: 576.9px) {
+  .products-heading {
+    h1 {
+      font-size: 1.8em;
+    }
+    h2 {
+      font-size: 1.1em;
+      padding-bottom: 3px;
+    }
+  }
+  .cart-product-name {
+    font-size: 14px !important;
+  }
+}
+
+@media screen and (min-width: 577px) and (max-width: 768.9px) {
+  .products-heading {
+    h1 {
+      font-size: 3em;
+    }
+    h2 {
+      font-size: 1.6em;
+      padding-bottom: 3px;
+    }
+  }
+}
+
+@media screen and (min-width: 769px) and (max-width: 992px) {
+  .products-heading {
+    h1 {
+      font-size: 4em;
+    }
+    h2 {
+      font-size: 2em;
+      padding-bottom: 3px;
+    }
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .login-form,
+  .register-form {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+  .chk-out-prod {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+  }
+}

@@ -1,0 +1,56 @@
+@import "../../index.scss";
+
+.confiti_icon {
+  width: 96px;
+  height: 96px;
+}
+.congrats_box {
+  box-shadow: 0px 0px 8px 2px $offWhiteColor;
+  border: 2px solid $offWhiteColor;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 15px;
+    background-color: $greenColor;
+  }
+  .congrats {
+    font-weight: 700 !important;
+    letter-spacing: 1.5px;
+  }
+}
+
+.continue_shop_link {
+  @include link($greenColor, $darkGreyColor);
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  &:hover {
+    letter-spacing: 2px;
+  }
+}
+
+.prod_img_cont {
+  @include cartImgContainer(55px, 55px, 55px, 55px);
+  position: relative;
+  .quantity_circle {
+    @extend .d-flex-rules;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    outline: 4px solid $whiteColor;
+    background-color: $greenColor;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    color: $whiteColor;
+    font-size: 12px;
+    font-weight: 800;
+  }
+}

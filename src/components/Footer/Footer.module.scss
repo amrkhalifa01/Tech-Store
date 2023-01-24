@@ -1,0 +1,31 @@
+@import "../../index.scss";
+
+.footer_heading {
+  box-shadow: 0px 0px 15px 2px $midGreyColor;
+}
+
+.footer_logo {
+  max-width: 150px;
+}
+
+.contact {
+  p {
+    letter-spacing: 1.3px;
+  }
+  i {
+    color: $midGreyColor !important;
+  }
+}
+
+.footer_link {
+  text-decoration: none;
+  color: $lightGreyColor;
+  transition: all 0.2s;
+  &:hover {
+    color: $greenColor;
+  }
+}
+
+.footer {
+  background-color: $lightBlack;
+}

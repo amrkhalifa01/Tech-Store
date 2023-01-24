@@ -1,0 +1,29 @@
+@import "../../index.scss";
+
+.notfound_heading {
+  font-weight: 200;
+  letter-spacing: 3px;
+  font-size: 6rem;
+  color: $greenColor;
+}
+
+.notfound_sub_head {
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+.caption {
+  color: $darkGreyColor;
+}
+
+.notfound_to_home {
+  color: $midGreyColor;
+  text-decoration: none;
+  border-bottom: 1px dashed $darkGreyColor;
+  transition: all 0.3s;
+  &:hover {
+    color: $greenColor;
+    letter-spacing: 1px;
+    border-bottom: 1px dashed $greenColor;
+  }
+}

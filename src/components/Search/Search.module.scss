@@ -1,0 +1,63 @@
+@import "../../index.scss";
+
+.section_height {
+  min-height: calc(100vh - 322px);
+}
+
+.search_section {
+  position: relative;
+  @extend .section_height;
+}
+
+.loader_container {
+  position: absolute !important;
+  height: 100% !important;
+}
+
+.sad_face {
+  width: 100px;
+}
+
+.search_to_home {
+  @include link($greenColor, $darkGreyColor);
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  &:hover {
+    letter-spacing: 2px;
+  }
+}
+
+.offcanvas {
+  width: 300px !important;
+  z-index: 9999 !important;
+}
+
+.category_icon {
+  @extend .d-flex-rules;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: $whiteColor;
+  border: 2px solid $lightGreyColor;
+  margin-right: 5px;
+}
+
+.filter_btn_container {
+  flex-grow: 1;
+  align-self: stretch;
+}
+
+.filter_bar_btn {
+  height: 100%;
+  background-color: $whiteColor !important;
+  color: $darkGreyColor !important;
+  border: 2px solid $lightGreyColor !important;
+  transition: all 0.2s;
+  &:hover {
+    border-color: $greenColor !important;
+    background-color: $greenColor !important;
+    color: $whiteColor !important;
+  }
+}

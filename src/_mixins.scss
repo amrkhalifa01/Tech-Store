@@ -1,0 +1,58 @@
+@mixin btn($bgHover, $clrHover, $brdrClrHover, $bg, $clr, $brdrClr) {
+  &:hover {
+    background-color: $bgHover !important;
+    color: $clrHover !important;
+    border-color: $brdrClrHover !important;
+  }
+  background-color: $bg !important;
+  color: $clr !important;
+  border: 1px solid $brdrClr !important;
+  transition: all 0.2s !important;
+}
+
+@mixin link($clrHover, $clr) {
+  &:hover {
+    color: $clrHover !important;
+  }
+  transition: all 0.2s !important;
+  text-decoration: none;
+  color: $clr !important;
+}
+
+@mixin bgStrockDesign($bgColor) {
+  background: {
+    image: url("./images/middel-motiva.png");
+    position: center;
+    size: cover;
+    repeat: no-repeat;
+    color: $bgColor !important;
+  }
+}
+
+@mixin cartProductBtn($bg, $text, $brdr, $bgHover, $textHover) {
+  background-color: $bg !important;
+  color: $text !important;
+  width: 20px !important;
+  height: 20px !important;
+  font-size: 12px !important;
+  display: inline-flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  border: 1px solid $brdr !important ;
+  border-radius: 50% !important;
+  transition: all 0.2s !important;
+  &:hover {
+    background-color: $bgHover !important;
+    color: $textHover !important;
+  }
+}
+
+@mixin cartImgContainer($width, $minWidth, $height, $minHeight) {
+  border: 1px solid $lightGreyColor;
+  padding: 3px;
+  border-radius: 3px;
+  width: $width;
+  min-width: $minWidth;
+  height: $height;
+  min-height: $minHeight;
+}
