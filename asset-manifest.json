@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/Tech-Store/static/css/main.26d58f86.css",
+    "main.js": "/Tech-Store/static/js/main.0f540ce3.js",
+    "static/js/787.5981910b.chunk.js": "/Tech-Store/static/js/787.5981910b.chunk.js",
+    "static/media/slider_pic_one.png": "/Tech-Store/static/media/slider_pic_one.0bf879b0e569680efc17.png",
+    "static/media/slider_pic_two.png": "/Tech-Store/static/media/slider_pic_two.be0dbbaf2bf4e443e6dc.png",
+    "static/media/fa-solid-900.ttf": "/Tech-Store/static/media/fa-solid-900.b1a653db79258eeccc5d.ttf",
+    "static/media/slider_pic_three.png": "/Tech-Store/static/media/slider_pic_three.7910ceb05fd70a0a5051.png",
+    "static/media/fa-brands-400.ttf": "/Tech-Store/static/media/fa-brands-400.450a5c898f0b184b968b.ttf",
+    "static/media/fa-solid-900.woff2": "/Tech-Store/static/media/fa-solid-900.41c0f706d8ce93933771.woff2",
+    "static/media/fa-brands-400.woff2": "/Tech-Store/static/media/fa-brands-400.3ac6859b28be946745f9.woff2",
+    "static/media/fa-regular-400.ttf": "/Tech-Store/static/media/fa-regular-400.3cd9fb8fcec4ad0f99d4.ttf",
+    "static/media/middel-motiva.png": "/Tech-Store/static/media/middel-motiva.a4780b95997b923de664.png",
+    "static/media/fa-regular-400.woff2": "/Tech-Store/static/media/fa-regular-400.1f3772178d9e5bed38a6.woff2",
+    "static/media/logo.png": "/Tech-Store/static/media/logo.1fce8daf643c95beaebc.png",
+    "static/media/fanIcon.png": "/Tech-Store/static/media/fanIcon.8c57a7a19a43d3d5fe3d.png",
+    "static/media/sadFace.png": "/Tech-Store/static/media/sadFace.22be9853f22a39c88add.png",
+    "static/media/emptyCart.png": "/Tech-Store/static/media/emptyCart.b7e9eb73d6632ac18f35.png",
+    "static/media/videoCardIcon.png": "/Tech-Store/static/media/videoCardIcon.a1d556de0dc287a673a0.png",
+    "static/media/strock_small.png": "/Tech-Store/static/media/strock_small.8ad605731312ca81368d.png",
+    "static/media/hddIcon.png": "/Tech-Store/static/media/hddIcon.1a6f7f6dbca48d085fd7.png",
+    "static/media/fa-v4compatibility.ttf": "/Tech-Store/static/media/fa-v4compatibility.e314b618134d5be20996.ttf",
+    "static/media/fa-v4compatibility.woff2": "/Tech-Store/static/media/fa-v4compatibility.4ee7f902d88f819e251c.woff2",
+    "static/media/slick.svg": "/Tech-Store/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/Tech-Store/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/Tech-Store/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/Tech-Store/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/Tech-Store/index.html",
+    "main.26d58f86.css.map": "/Tech-Store/static/css/main.26d58f86.css.map",
+    "main.0f540ce3.js.map": "/Tech-Store/static/js/main.0f540ce3.js.map",
+    "787.5981910b.chunk.js.map": "/Tech-Store/static/js/787.5981910b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.26d58f86.css",
+    "static/js/main.0f540ce3.js"
+  ]
+}
