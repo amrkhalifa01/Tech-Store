@@ -133,7 +133,7 @@ export default function ProductDetails() {
                         </div>
                       </div>
                       <div className="col-7 col-sm-8">
-                        <button className={`btn w-100 ms-2 ${isAddLoading ? "disabled" : ""} ${!productAvailability || product.inventory.available === 0 ? "out-of-stock mouse-not-allowed" : "common-btn"}`} onClick={() => onAddProduct()} disabled={isAddLoading ? true : false}>
+                        <button className={`btn w-100 ms-2 fw-bold ${isAddLoading ? "disabled" : ""} ${!productAvailability || product.inventory.available === 0 ? "out-of-stock mouse-not-allowed" : "common-btn"}`} onClick={() => onAddProduct()} disabled={isAddLoading ? true : false}>
                           {!productAvailability || product.inventory.available === 0 ? (
                             <>
                               Out Of Stock<i className="fa-solid fa-exclamation ms-2"></i>

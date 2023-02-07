@@ -2,44 +2,42 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { productsContext } from "../../Context/Store";
 import Images from "../../images/images";
-import { categories, commerce } from "../../lib/commerce";
+import { categories } from "../../lib/commerce";
 import Pagination from "../Pagination/Pagination";
 import Product from "../Product/Product";
 import styles from "./Search.module.scss";
 
 export default function Search() {
-  let { navigate } = useContext(productsContext);
+  let { navigate, getSearchResult } = useContext(productsContext);
 
   let [searchParams, setSearchParams] = useSearchParams();
   let searchWords = searchParams.get("query");
 
   let [searchResults, setSearchResults] = useState({});
-  let [isSearchLoading, setIsSearchLoading] = useState(true);
-
+  let [isSearchLoading, setIsSearchLoading] = useState(false);
   let [categorySearch, setCategorySearch] = useState(null);
 
   let [notFoundWord, setNotFoundWord] = useState("products");
-
-  const getSearchResult = async (category, limit, page, callBack, callBackLoad, sortBy = "name", sortDirection = "asc") => {
-    try {
-      callBackLoad(true);
-      const response = await commerce.products.list({ category_id: category, query: searchWords, limit, page, sortBy, sortDirection });
-      callBack(response);
-      callBackLoad(false);
-    } catch (error) {
-      navigate("/not-found");
-    }
-  };
 
   useEffect(() => {
     if (searchWords == null) {
       navigate("/not-found");
     }
-    getSearchResult(categorySearch, 20, 1, setSearchResults, setIsSearchLoading);
+    if (searchWords.length > 0) {
+      getSearchResult(searchWords.trim(), categorySearch, 20, 1, setSearchResults, setIsSearchLoading);
+    } else {
+      setIsSearchLoading(false);
+      setSearchResults({});
+    }
   }, []);
 
   useEffect(() => {
-    getSearchResult(categorySearch, 20, 1, setSearchResults, setIsSearchLoading);
+    if (searchWords.length > 0) {
+      getSearchResult(searchWords.trim(), categorySearch, 20, 1, setSearchResults, setIsSearchLoading);
+    } else {
+      setIsSearchLoading(false);
+      setSearchResults({});
+    }
   }, [searchWords, categorySearch]);
 
   return (

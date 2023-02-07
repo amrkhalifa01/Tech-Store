@@ -4,11 +4,18 @@ import Images from "../../images/images";
 import { Link, useLocation } from "react-router-dom";
 import { authenticationContext, productsContext } from "../../Context/Store";
 import Swal from "sweetalert2";
+import { useRef } from "react";
+import { useState } from "react";
 
 export default function Navbar() {
-  let { cart, emptyCart, isCartLoading, isAddLoading, isUpdateLoading, isRemoveLoading, isEmptyLoading, isRefreshCartLoading, navigate } = useContext(productsContext);
+  let { cart, emptyCart, isCartLoading, isAddLoading, isUpdateLoading, isRemoveLoading, isEmptyLoading, isRefreshCartLoading, navigate, getSearchResult, goToProductDetails } = useContext(productsContext);
 
   let { client, logout } = useContext(authenticationContext);
+
+  let [realTimeSearch, setRealTimeSearch] = useState({});
+  let [isRealLoading, setIsRealLoading] = useState(true);
+  let resultBox = useRef();
+  let mobileResultBox = useRef();
 
   let url = useLocation();
 
@@ -42,6 +49,37 @@ export default function Navbar() {
       pathname: `/search`,
       search: `?query=${searchText}`,
     });
+    resultBox.current.classList.add("d-none");
+    resultBox.current.classList.remove("d-block");
+  };
+
+  const getRealTimeSearch = (e) => {
+    if (e.target.value.length > 0) {
+      resultBox.current.classList.add("d-block");
+      resultBox.current.classList.remove("d-none");
+      mobileResultBox.current.classList.add("d-block");
+      mobileResultBox.current.classList.remove("d-none");
+      let searchWords = e.target.value.toLowerCase();
+      if (!searchWords.startsWith(" ")) {
+        getSearchResult(searchWords, null, 4, 1, setRealTimeSearch, setIsRealLoading);
+      } else {
+        setIsRealLoading(false);
+        setRealTimeSearch({});
+      }
+    } else {
+      resultBox.current.classList.add("d-none");
+      resultBox.current.classList.remove("d-block");
+      mobileResultBox.current.classList.add("d-none");
+      mobileResultBox.current.classList.remove("d-block");
+      setIsRealLoading(false);
+      setRealTimeSearch({});
+    }
+  };
+
+  const goToSearchProdDetails = (productId) => {
+    goToProductDetails(productId);
+    resultBox.current.classList.add("d-none");
+    mobileResultBox.current.classList.add("d-none");
   };
 
   return (
@@ -237,16 +275,50 @@ export default function Navbar() {
                     </div>
                   </div>
                 </div>
-                <Link to="home">
-                  <img src={Images.navLogo} alt="" className={styles.logo} />
-                </Link>
-                <div className={`${styles.search_box} d-none d-lg-block`}>
-                  <form onSubmit={goToSearch} className="d-flex" role="search">
-                    <input className="form-control me-2 shadow-none input-brdr-green" type="search" aria-label="Search" placeholder="Search..." required />
-                    <button className={`btn ${styles.nav_search_btn}`} type="submit">
-                      Search
-                    </button>
-                  </form>
+                <div className={`${styles.w_60} d-flex align-items-center justify-content-center`}>
+                  <Link to="home">
+                    <img src={Images.navLogo} alt="" className={styles.logo} />
+                  </Link>
+                  <div className="d-none d-lg-block ms-4 flex-grow-1 position-relative">
+                    <form onSubmit={goToSearch} className="d-flex" role="search">
+                      <input className="form-control me-2 shadow-none input-brdr-green" type="search" aria-label="Search" placeholder="Search..." required onChange={getRealTimeSearch} />
+                      <button className={`btn ${styles.nav_search_btn}`} type="submit">
+                        Search
+                      </button>
+                    </form>
+                    <div className={`${styles.result_box} d-none`} ref={resultBox}>
+                      {isRealLoading ? (
+                        <div className={styles.result_loading}>
+                          <div className="loader triangle">
+                            <svg viewBox="0 0 86 80">
+                              <polygon points="43 8 79 72 7 72"></polygon>
+                            </svg>
+                          </div>
+                        </div>
+                      ) : realTimeSearch.data && realTimeSearch.data.length > 0 ? (
+                        realTimeSearch.data.map((item, index) => (
+                          <div key={index} className={`${styles.result_item} ${styles.border_button} p-3`} onClick={() => goToSearchProdDetails(item.id)}>
+                            <div className="d-flex align-items-center">
+                              <div>
+                                <div className={styles.item_img}>
+                                  <img src={item.image.url} className="w-100" alt="search result item" />
+                                </div>
+                              </div>
+                              <div className="ms-2">
+                                <h5 className="text-dark-grey mb-1 small-font">{item.name}</h5>
+                                <h6 className="text-green mb-0 small-font">{item.price.formatted_with_code}</h6>
+                              </div>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <div className={`d-flex flex-column justify-content-center align-items-center ${styles.result_not_found}`}>
+                          <img src={Images.sadFace} alt="sad face" className={`mb-2 ${styles.sad_face}`} />
+                          <h6 className="mb-3 text-center">Sorry, there are no products matching your search words</h6>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
                 <div>
                   <ul className="d-flex align-items-center list-unstyled mb-0">
@@ -286,13 +358,45 @@ export default function Navbar() {
           </div>
         </div>
         <div className="container light-brdr-bottom d-lg-none">
-          <div className="p-2">
+          <div className="py-2 position-relative">
             <form onSubmit={goToSearch} className="d-flex align-items-center" role="search">
-              <input className="form-control me-2 shadow-none input-brdr-green" type="search" aria-label="Search" placeholder="Search..." />
+              <input className="form-control me-2 shadow-none input-brdr-green" type="search" aria-label="Search" placeholder="Search..." onChange={getRealTimeSearch} />
               <button className={`btn ${styles.mob_search_btn}`} type="submit">
                 Search
               </button>
             </form>
+            <div className={`${styles.result_box} d-none`} ref={mobileResultBox}>
+              {isRealLoading ? (
+                <div className={styles.result_loading}>
+                  <div className="loader triangle">
+                    <svg viewBox="0 0 86 80">
+                      <polygon points="43 8 79 72 7 72"></polygon>
+                    </svg>
+                  </div>
+                </div>
+              ) : realTimeSearch.data && realTimeSearch.data.length > 0 ? (
+                realTimeSearch.data.map((item, index) => (
+                  <div key={index} className={`${styles.result_item} ${styles.border_button} p-3`} onClick={() => goToSearchProdDetails(item.id)}>
+                    <div className="d-flex align-items-center">
+                      <div>
+                        <div className={styles.item_img}>
+                          <img src={item.image.url} className="w-100" alt="search result item" />
+                        </div>
+                      </div>
+                      <div className="ms-2">
+                        <h5 className="text-dark-grey small-font mb-1">{item.name}</h5>
+                        <h6 className="text-green mb-0 small-font">{item.price.formatted_with_code}</h6>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className={`d-flex flex-column justify-content-center align-items-center ${styles.result_not_found}`}>
+                  <img src={Images.sadFace} alt="sad face" className={`mb-2 ${styles.sad_face}`} />
+                  <h6 className="mb-3 text-center">Sorry, there are no products matching your search words</h6>
+                </div>
+              )}
+            </div>
           </div>
         </div>
         <nav className="navbar navbar-expand-md d-none d-lg-block p-0">
@@ -396,22 +500,22 @@ export default function Navbar() {
               </ul>
               <ul className="navbar-nav ms-auto mb-0">
                 <li className="nav-item">
-                  <a className={`nav-link ${styles.nav_link}`} href="https://www.facebook.com/">
+                  <a className={`nav-link ${styles.nav_link}`} href="https://www.facebook.com/" target="_blank">
                     <i className="fa-brands fa-facebook"></i>
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className={`nav-link ${styles.nav_link}`} href="https://www.instagram.com/">
+                  <a className={`nav-link ${styles.nav_link}`} href="https://www.instagram.com/" target="_blank">
                     <i className="fa-brands fa-instagram"></i>
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className={`nav-link ${styles.nav_link}`} href="https://www.youtube.com/">
+                  <a className={`nav-link ${styles.nav_link}`} href="https://www.youtube.com/" target="_blank">
                     <i className="fa-brands fa-youtube"></i>
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className={`nav-link ${styles.nav_link}`} href="https://www.linkedin.com/">
+                  <a className={`nav-link ${styles.nav_link}`} href="https://www.linkedin.com/" target="_blank">
                     <i className="fa-brands fa-linkedin-in"></i>
                   </a>
                 </li>

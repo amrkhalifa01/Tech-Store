@@ -39,7 +39,7 @@ export default function Product({ product }) {
           <h4 className="h5 fw-bold text-green mb-4 mt-2">{product.price.formatted_with_code}</h4>
         </div>
         <div className="p-3 pt-0">
-          <button className={`btn w-100 ${!productAvailability || product.inventory.available === 0 ? "out-of-stock mouse-not-allowed" : "common-btn"} d-flex-rules`} onClick={() => onAddProduct()} ref={addProdBtn}>
+          <button className={`btn w-100 fw-bold ${!productAvailability || product.inventory.available === 0 ? "out-of-stock mouse-not-allowed" : "common-btn"} d-flex-rules`} onClick={() => onAddProduct()} ref={addProdBtn}>
             {!productAvailability || product.inventory.available === 0 ? (
               <>
                 Out Of Stock<i className="fa-solid fa-exclamation ms-2"></i>

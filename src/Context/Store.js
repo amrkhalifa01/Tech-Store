@@ -112,6 +112,17 @@ export default function Store({ children }) {
     }
   };
 
+  const getSearchResult = async (searchWords, category, limit, page, callBack, callBackLoad, sortBy = "name", sortDirection = "asc") => {
+    try {
+      callBackLoad(true);
+      const response = await commerce.products.list({ category_id: category, query: searchWords, limit, page, sortBy, sortDirection });
+      callBack(response);
+      callBackLoad(false);
+    } catch (error) {
+      navigate("/not-found");
+    }
+  };
+
   function saveClientData() {
     let encodedClientToken = localStorage.getItem("clientToken");
     let decodedClientToken = jwtDecode(encodedClientToken);
@@ -137,6 +148,7 @@ export default function Store({ children }) {
   }, [cart]);
 
   let productContextLifting = {
+    getSearchResult,
     navigate,
     fetchProducts,
     goToProductDetails,

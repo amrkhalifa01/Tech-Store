@@ -78,6 +78,55 @@ header {
   }
 }
 
+.w_60 {
+  width: 60%;
+}
+
+.result_box {
+  position: absolute;
+  width: 100%;
+  z-index: 999;
+  border-radius: 5px;
+  margin-top: 3px;
+  background-color: $whiteColor;
+  border: 1px solid $lightGreyColor;
+}
+
+.result_loading {
+  min-height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.result_item {
+  & {
+    cursor: pointer;
+  }
+  &:hover {
+    background-color: $offWhiteColor;
+  }
+  .item_img {
+    width: 50px !important;
+    height: 50px !important;
+    border: 1px solid $lightGreyColor;
+    border-radius: 5px;
+    margin: auto;
+  }
+}
+
+.border_button {
+  border-bottom: 1px solid $lightGreyColor;
+}
+
+.result_not_found {
+  height: 10rem;
+}
+
+.sad_face {
+  width: 50px;
+}
+
 @media screen and (max-width: 991.9px) {
   .cart::before {
     display: none;
