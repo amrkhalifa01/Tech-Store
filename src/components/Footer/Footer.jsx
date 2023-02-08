@@ -148,7 +148,7 @@ export default function Footer() {
         <div className="container px-2 px-md-5">
           <div className="d-flex justify-content-between align-items-center">
             <div>
-              <p className="mb-0 text-light-grey">🔰 2022 AAK, Inc. All rights reserved.</p>
+              <p className="mb-0 text-light-grey">🔰 {new Date().getFullYear()} AAK, Inc. All rights reserved.</p>
             </div>
             <div>
               <i className="fa-brands fa-cc-visa fa-2x mx-1 text-green"></i>
