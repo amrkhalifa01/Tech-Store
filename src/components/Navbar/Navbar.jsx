@@ -51,6 +51,8 @@ export default function Navbar() {
     });
     resultBox.current.classList.add("d-none");
     resultBox.current.classList.remove("d-block");
+    mobileResultBox.current.classList.add("d-none");
+    mobileResultBox.current.classList.remove("d-block");
   };
 
   const getRealTimeSearch = (e) => {
