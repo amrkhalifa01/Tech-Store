@@ -41,7 +41,27 @@ export default function Case() {
           </div>
         </>
       )}
-      {cases.meta ? cases.meta.pagination.total_pages !== 1 ? <Pagination pages={[...Array(cases.meta.pagination.total_pages)].fill(1).map((element, index) => index + 1)} fetchCategoryProducts={fetchProducts} categoryId={categories.case} limit={8} setCategory={setCases} setCategoryLoading={setIsCasesLoading} pagination={cases.meta.pagination} /> : "" : ""}
+      {cases.meta ? (
+        cases.meta.pagination.total_pages !== 1 ? (
+          <Pagination
+            pages={[...Array(cases.meta.pagination.total_pages)]
+              .fill(1)
+              .map((element, index) => index + 1)
+              .slice(0, 5)}
+            fetchCategoryProducts={fetchProducts}
+            categoryId={categories.case}
+            limit={8}
+            setCategory={setCases}
+            setCategoryLoading={setIsCasesLoading}
+            pagination={cases.meta.pagination}
+            items={cases}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
     </>
   );
 }

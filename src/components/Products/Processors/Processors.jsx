@@ -41,7 +41,27 @@ export default function Processors() {
           </div>
         </>
       )}
-      {processors.meta ? processors.meta.pagination.total_pages !== 1 ? <Pagination pages={[...Array(processors.meta.pagination.total_pages)].fill(1).map((element, index) => index + 1)} fetchCategoryProducts={fetchProducts} categoryId={categories.processor} limit={8} setCategory={setProcessors} setCategoryLoading={setIsProLoading} pagination={processors.meta.pagination} /> : "" : ""}
+      {processors.meta ? (
+        processors.meta.pagination.total_pages !== 1 ? (
+          <Pagination
+            pages={[...Array(processors.meta.pagination.total_pages)]
+              .fill(1)
+              .map((element, index) => index + 1)
+              .slice(0, 5)}
+            fetchCategoryProducts={fetchProducts}
+            categoryId={categories.processor}
+            limit={8}
+            setCategory={setProcessors}
+            setCategoryLoading={setIsProLoading}
+            pagination={processors.meta.pagination}
+            items={processors}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
     </>
   );
 }

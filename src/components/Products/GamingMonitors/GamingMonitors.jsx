@@ -41,7 +41,27 @@ export default function GamingMonitors() {
           </div>
         </>
       )}
-      {gamingMonitors.meta ? gamingMonitors.meta.pagination.total_pages !== 1 ? <Pagination pages={[...Array(gamingMonitors.meta.pagination.total_pages)].fill(1).map((element, index) => index + 1)} fetchCategoryProducts={fetchProducts} categoryId={categories.gamingMonitor} limit={8} setCategory={setGamingMonitors} setCategoryLoading={setIsGmonitorsLoading} pagination={gamingMonitors.meta.pagination} /> : "" : ""}
+      {gamingMonitors.meta ? (
+        gamingMonitors.meta.pagination.total_pages !== 1 ? (
+          <Pagination
+            pages={[...Array(gamingMonitors.meta.pagination.total_pages)]
+              .fill(1)
+              .map((element, index) => index + 1)
+              .slice(0, 5)}
+            fetchCategoryProducts={fetchProducts}
+            categoryId={categories.gamingMonitor}
+            limit={8}
+            setCategory={setGamingMonitors}
+            setCategoryLoading={setIsGmonitorsLoading}
+            pagination={gamingMonitors.meta.pagination}
+            items={gamingMonitors}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
     </>
   );
 }

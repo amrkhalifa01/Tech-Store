@@ -19,12 +19,15 @@ export default function Search() {
 
   let [notFoundWord, setNotFoundWord] = useState("products");
 
+  let [nameSorting, setNameSorting] = useState("");
+  let [priceSorting, setPriceSorting] = useState("");
+
   useEffect(() => {
     if (searchWords == null) {
       navigate("/not-found");
     }
     if (searchWords.length > 0) {
-      getSearchResult(searchWords.trim(), categorySearch, 20, 1, setSearchResults, setIsSearchLoading);
+      getSearchResult(categorySearch, 20, 1, setSearchResults, setIsSearchLoading, searchWords.trim());
     } else {
       setIsSearchLoading(false);
       setSearchResults({});
@@ -33,12 +36,17 @@ export default function Search() {
 
   useEffect(() => {
     if (searchWords.length > 0) {
-      getSearchResult(searchWords.trim(), categorySearch, 20, 1, setSearchResults, setIsSearchLoading);
+      getSearchResult(categorySearch, 20, 1, setSearchResults, setIsSearchLoading, searchWords.trim());
     } else {
       setIsSearchLoading(false);
       setSearchResults({});
     }
   }, [searchWords, categorySearch]);
+
+  useEffect(() => {
+    setNameSorting("");
+    setPriceSorting("");
+  }, [searchWords]);
 
   return (
     <>
@@ -421,7 +429,13 @@ export default function Search() {
                         <i className="fa-solid fa-arrow-down-a-z text-green"></i>
                       </div>
                       <div className={styles.filter_btn_container}>
-                        <button aria-label="Close" className={`dropdown-item px-3 rounded-pill ${styles.filter_bar_btn}`} onClick={() => getSearchResult(categorySearch, 20, 1, setSearchResults, setIsSearchLoading, "name", "asc")}>
+                        <button
+                          aria-label="Close"
+                          className={`dropdown-item px-3 rounded-pill ${styles.filter_bar_btn}`}
+                          onClick={() => {
+                            if (nameSorting !== "from a to z") getSearchResult(categorySearch, 20, 1, setSearchResults, setIsSearchLoading, searchWords, "name", "asc");
+                            setNameSorting("from a to z");
+                          }}>
                           Name From A to Z
                         </button>
                       </div>
@@ -433,7 +447,13 @@ export default function Search() {
                         <i className="fa-solid fa-arrow-down-z-a text-green"></i>
                       </div>
                       <div className={styles.filter_btn_container}>
-                        <button aria-label="Close" className={`dropdown-item px-3 rounded-pill ${styles.filter_bar_btn}`} onClick={() => getSearchResult(categorySearch, 20, 1, setSearchResults, setIsSearchLoading, "name", "desc")}>
+                        <button
+                          aria-label="Close"
+                          className={`dropdown-item px-3 rounded-pill ${styles.filter_bar_btn}`}
+                          onClick={() => {
+                            if (nameSorting !== "from z to a") getSearchResult(categorySearch, 20, 1, setSearchResults, setIsSearchLoading, searchWords, "name", "desc");
+                            setNameSorting("from z to a");
+                          }}>
                           Name from Z to A
                         </button>
                       </div>
@@ -445,7 +465,13 @@ export default function Search() {
                         <i className="fa-solid fa-arrow-down-9-1 text-green"></i>
                       </div>
                       <div className={styles.filter_btn_container}>
-                        <button aria-label="Close" className={`dropdown-item px-3 rounded-pill ${styles.filter_bar_btn}`} onClick={() => getSearchResult(categorySearch, 20, 1, setSearchResults, setIsSearchLoading, "price", "desc")}>
+                        <button
+                          aria-label="Close"
+                          className={`dropdown-item px-3 rounded-pill ${styles.filter_bar_btn}`}
+                          onClick={() => {
+                            if (priceSorting !== "from expensive to cheap") getSearchResult(categorySearch, 20, 1, setSearchResults, setIsSearchLoading, searchWords, "price", "desc");
+                            setPriceSorting("from expensive to cheap");
+                          }}>
                           Price from expensive to cheap
                         </button>
                       </div>
@@ -457,7 +483,13 @@ export default function Search() {
                         <i className="fa-solid fa-arrow-down-1-9 text-green"></i>
                       </div>
                       <div className={styles.filter_btn_container}>
-                        <button aria-label="Close" className={`dropdown-item px-3 rounded-pill ${styles.filter_bar_btn}`} onClick={() => getSearchResult(categorySearch, 20, 1, setSearchResults, setIsSearchLoading, "price", "asc")}>
+                        <button
+                          aria-label="Close"
+                          className={`dropdown-item px-3 rounded-pill ${styles.filter_bar_btn}`}
+                          onClick={() => {
+                            if (priceSorting !== "from cheap to expensive") getSearchResult(categorySearch, 20, 1, setSearchResults, setIsSearchLoading, searchWords, "price", "asc");
+                            setPriceSorting("from cheap to expensive");
+                          }}>
                           Price from cheap to expensive
                         </button>
                       </div>
@@ -495,7 +527,30 @@ export default function Search() {
             </div>
           </div>
         )}
-        {searchResults.meta ? searchResults.meta.pagination.total_pages !== 1 ? <Pagination pages={[...Array(searchResults.meta.pagination.total_pages)].fill(1).map((element, index) => index + 1)} fetchCategoryProducts={getSearchResult} categoryId={categorySearch} limit={20} setCategory={setSearchResults} setCategoryLoading={setIsSearchLoading} pagination={searchResults.meta.pagination} /> : "" : ""}
+        {searchResults.meta ? (
+          searchResults.meta.pagination.total_pages !== 1 ? (
+            <Pagination
+              pages={[...Array(searchResults.meta.pagination.total_pages)]
+                .fill(1)
+                .map((element, index) => index + 1)
+                .slice(0, 5)}
+              fetchCategoryProducts={getSearchResult}
+              categoryId={categorySearch}
+              limit={20}
+              setCategory={setSearchResults}
+              setCategoryLoading={setIsSearchLoading}
+              pagination={searchResults.meta.pagination}
+              searchWords={searchWords}
+              items={searchResults}
+              nameSorting={nameSorting}
+              priceSorting={priceSorting}
+            />
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
       </div>
     </>
   );

@@ -63,7 +63,7 @@ export default function Navbar() {
       mobileResultBox.current.classList.remove("d-none");
       let searchWords = e.target.value.toLowerCase();
       if (!searchWords.startsWith(" ")) {
-        getSearchResult(searchWords, null, 4, 1, setRealTimeSearch, setIsRealLoading);
+        getSearchResult(null, 4, 1, setRealTimeSearch, setIsRealLoading, searchWords);
       } else {
         setIsRealLoading(false);
         setRealTimeSearch({});

@@ -41,7 +41,27 @@ export default function AirCooling() {
           </div>
         </>
       )}
-      {airCooling.meta ? airCooling.meta.pagination.total_pages !== 1 ? <Pagination pages={[...Array(airCooling.meta.pagination.total_pages)].fill(1).map((element, index) => index + 1)} fetchCategoryProducts={fetchProducts} categoryId={categories.airCooling} limit={8} setCategory={setAirCooling} setCategoryLoading={setIsAcLoading} pagination={airCooling.meta.pagination} /> : "" : ""}
+      {airCooling.meta ? (
+        airCooling.meta.pagination.total_pages !== 1 ? (
+          <Pagination
+            pages={[...Array(airCooling.meta.pagination.total_pages)]
+              .fill(1)
+              .map((element, index) => index + 1)
+              .slice(0, 5)}
+            fetchCategoryProducts={fetchProducts}
+            categoryId={categories.airCooling}
+            limit={8}
+            setCategory={setAirCooling}
+            setCategoryLoading={setIsAcLoading}
+            pagination={airCooling.meta.pagination}
+            items={airCooling}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
     </>
   );
 }

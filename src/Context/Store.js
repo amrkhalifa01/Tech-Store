@@ -112,7 +112,7 @@ export default function Store({ children }) {
     }
   };
 
-  const getSearchResult = async (searchWords, category, limit, page, callBack, callBackLoad, sortBy = "name", sortDirection = "asc") => {
+  const getSearchResult = async (category, limit, page, callBack, callBackLoad, searchWords, sortBy = "name", sortDirection = "asc") => {
     try {
       callBackLoad(true);
       const response = await commerce.products.list({ category_id: category, query: searchWords, limit, page, sortBy, sortDirection });

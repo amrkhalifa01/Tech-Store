@@ -41,7 +41,27 @@ export default function GraphicCards() {
           </div>
         </>
       )}
-      {graphicCards.meta ? graphicCards.meta.pagination.total_pages !== 1 ? <Pagination pages={[...Array(graphicCards.meta.pagination.total_pages)].fill(1).map((element, index) => index + 1)} fetchCategoryProducts={fetchProducts} categoryId={categories.graphicCard} limit={8} setCategory={setGraphicCards} setCategoryLoading={setIsGcardsLoading} pagination={graphicCards.meta.pagination} /> : "" : ""}
+      {graphicCards.meta ? (
+        graphicCards.meta.pagination.total_pages !== 1 ? (
+          <Pagination
+            pages={[...Array(graphicCards.meta.pagination.total_pages)]
+              .fill(1)
+              .map((element, index) => index + 1)
+              .slice(0, 5)}
+            fetchCategoryProducts={fetchProducts}
+            categoryId={categories.graphicCard}
+            limit={8}
+            setCategory={setGraphicCards}
+            setCategoryLoading={setIsGcardsLoading}
+            pagination={graphicCards.meta.pagination}
+            items={graphicCards}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
     </>
   );
 }

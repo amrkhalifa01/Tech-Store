@@ -41,7 +41,27 @@ export default function Mouse() {
           </div>
         </>
       )}
-      {mouses.meta ? mouses.meta.pagination.total_pages !== 1 ? <Pagination pages={[...Array(mouses.meta.pagination.total_pages)].fill(1).map((element, index) => index + 1)} fetchCategoryProducts={fetchProducts} categoryId={categories.mouse} limit={8} setCategory={setMouses} setCategoryLoading={setIsMousesLoading} pagination={mouses.meta.pagination} /> : "" : ""}
+      {mouses.meta ? (
+        mouses.meta.pagination.total_pages !== 1 ? (
+          <Pagination
+            pages={[...Array(mouses.meta.pagination.total_pages)]
+              .fill(1)
+              .map((element, index) => index + 1)
+              .slice(0, 5)}
+            fetchCategoryProducts={fetchProducts}
+            categoryId={categories.mouse}
+            limit={8}
+            setCategory={setMouses}
+            setCategoryLoading={setIsMousesLoading}
+            pagination={mouses.meta.pagination}
+            items={mouses}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
     </>
   );
 }

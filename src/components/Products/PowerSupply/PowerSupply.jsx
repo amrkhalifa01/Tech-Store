@@ -41,7 +41,27 @@ export default function PowerSupply() {
           </div>
         </>
       )}
-      {powerSupply.meta ? powerSupply.meta.pagination.total_pages !== 1 ? <Pagination pages={[...Array(powerSupply.meta.pagination.total_pages)].fill(1).map((element, index) => index + 1)} fetchCategoryProducts={fetchProducts} categoryId={categories.powerSupply} limit={8} setCategory={setPowerSupply} setCategoryLoading={setIsPsLoading} pagination={powerSupply.meta.pagination} /> : "" : ""}
+      {powerSupply.meta ? (
+        powerSupply.meta.pagination.total_pages !== 1 ? (
+          <Pagination
+            pages={[...Array(powerSupply.meta.pagination.total_pages)]
+              .fill(1)
+              .map((element, index) => index + 1)
+              .slice(0, 5)}
+            fetchCategoryProducts={fetchProducts}
+            categoryId={categories.powerSupply}
+            limit={8}
+            setCategory={setPowerSupply}
+            setCategoryLoading={setIsPsLoading}
+            pagination={powerSupply.meta.pagination}
+            items={powerSupply}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
     </>
   );
 }

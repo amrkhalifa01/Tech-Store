@@ -41,7 +41,27 @@ export default function SolidStateDrives() {
           </div>
         </>
       )}
-      {sSDrives.meta ? sSDrives.meta.pagination.total_pages !== 1 ? <Pagination pages={[...Array(sSDrives.meta.pagination.total_pages)].fill(1).map((element, index) => index + 1)} fetchCategoryProducts={fetchProducts} categoryId={categories.solidStateDrive} limit={8} setCategory={setSSDrives} setCategoryLoading={setIsSSDLoading} pagination={sSDrives.meta.pagination} /> : "" : ""}
+      {sSDrives.meta ? (
+        sSDrives.meta.pagination.total_pages !== 1 ? (
+          <Pagination
+            pages={[...Array(sSDrives.meta.pagination.total_pages)]
+              .fill(1)
+              .map((element, index) => index + 1)
+              .slice(0, 5)}
+            fetchCategoryProducts={fetchProducts}
+            categoryId={categories.solidStateDrive}
+            limit={8}
+            setCategory={setSSDrives}
+            setCategoryLoading={setIsSSDLoading}
+            pagination={sSDrives.meta.pagination}
+            items={sSDrives}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
     </>
   );
 }

@@ -41,7 +41,27 @@ export default function GamingChairs() {
           </div>
         </>
       )}
-      {gamingChairs.meta ? gamingChairs.meta.pagination.total_pages !== 1 ? <Pagination pages={[...Array(gamingChairs.meta.pagination.total_pages)].fill(1).map((element, index) => index + 1)} fetchCategoryProducts={fetchProducts} categoryId={categories.gamingChairs} limit={8} setCategory={setGamingChairs} setCategoryLoading={setIsGchairsLoading} pagination={gamingChairs.meta.pagination} /> : "" : ""}
+      {gamingChairs.meta ? (
+        gamingChairs.meta.pagination.total_pages !== 1 ? (
+          <Pagination
+            pages={[...Array(gamingChairs.meta.pagination.total_pages)]
+              .fill(1)
+              .map((element, index) => index + 1)
+              .slice(0, 5)}
+            fetchCategoryProducts={fetchProducts}
+            categoryId={categories.gamingChairs}
+            limit={8}
+            setCategory={setGamingChairs}
+            setCategoryLoading={setIsGchairsLoading}
+            pagination={gamingChairs.meta.pagination}
+            items={gamingChairs}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
     </>
   );
 }

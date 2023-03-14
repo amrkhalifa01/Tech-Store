@@ -41,7 +41,27 @@ export default function MousePad() {
           </div>
         </>
       )}
-      {mousePads.meta ? mousePads.meta.pagination.total_pages !== 1 ? <Pagination pages={[...Array(mousePads.meta.pagination.total_pages)].fill(1).map((element, index) => index + 1)} fetchCategoryProducts={fetchProducts} categoryId={categories.mousePad} limit={8} setCategory={setMousePads} setCategoryLoading={setIsMousePadsLoading} pagination={mousePads.meta.pagination} /> : "" : ""}
+      {mousePads.meta ? (
+        mousePads.meta.pagination.total_pages !== 1 ? (
+          <Pagination
+            pages={[...Array(mousePads.meta.pagination.total_pages)]
+              .fill(1)
+              .map((element, index) => index + 1)
+              .slice(0, 5)}
+            fetchCategoryProducts={fetchProducts}
+            categoryId={categories.mousePad}
+            limit={8}
+            setCategory={setMousePads}
+            setCategoryLoading={setIsMousePadsLoading}
+            pagination={mousePads.meta.pagination}
+            items={mousePads}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
     </>
   );
 }

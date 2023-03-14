@@ -41,7 +41,27 @@ export default function HardDrives() {
           </div>
         </>
       )}
-      {hDrives.meta ? hDrives.meta.pagination.total_pages !== 1 ? <Pagination pages={[...Array(hDrives.meta.pagination.total_pages)].fill(1).map((element, index) => index + 1)} fetchCategoryProducts={fetchProducts} categoryId={categories.hardDrive} limit={8} setCategory={setHDrives} setCategoryLoading={setIsHdLoading} pagination={hDrives.meta.pagination} /> : "" : ""}
+      {hDrives.meta ? (
+        hDrives.meta.pagination.total_pages !== 1 ? (
+          <Pagination
+            pages={[...Array(hDrives.meta.pagination.total_pages)]
+              .fill(1)
+              .map((element, index) => index + 1)
+              .slice(0, 5)}
+            fetchCategoryProducts={fetchProducts}
+            categoryId={categories.hardDrive}
+            limit={8}
+            setCategory={setHDrives}
+            setCategoryLoading={setIsHdLoading}
+            pagination={hDrives.meta.pagination}
+            items={hDrives}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
     </>
   );
 }

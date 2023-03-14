@@ -41,7 +41,27 @@ export default function GamingHeadset() {
           </div>
         </>
       )}
-      {gamingHeadsets.meta ? gamingHeadsets.meta.pagination.total_pages !== 1 ? <Pagination pages={[...Array(gamingHeadsets.meta.pagination.total_pages)].fill(1).map((element, index) => index + 1)} fetchCategoryProducts={fetchProducts} categoryId={categories.gamingHeadset} limit={8} setCategory={setGamingHeadsets} setCategoryLoading={setIsGheadsetLoading} pagination={gamingHeadsets.meta.pagination} /> : "" : ""}
+      {gamingHeadsets.meta ? (
+        gamingHeadsets.meta.pagination.total_pages !== 1 ? (
+          <Pagination
+            pages={[...Array(gamingHeadsets.meta.pagination.total_pages)]
+              .fill(1)
+              .map((element, index) => index + 1)
+              .slice(0, 5)}
+            fetchCategoryProducts={fetchProducts}
+            categoryId={categories.gamingHeadset}
+            limit={8}
+            setCategory={setGamingHeadsets}
+            setCategoryLoading={setIsGheadsetLoading}
+            pagination={gamingHeadsets.meta.pagination}
+            items={gamingHeadsets}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
     </>
   );
 }

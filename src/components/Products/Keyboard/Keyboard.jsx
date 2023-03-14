@@ -41,7 +41,27 @@ export default function Keyboard() {
           </div>
         </>
       )}
-      {keyboards.meta ? keyboards.meta.pagination.total_pages !== 1 ? <Pagination pages={[...Array(keyboards.meta.pagination.total_pages)].fill(1).map((element, index) => index + 1)} fetchCategoryProducts={fetchProducts} categoryId={categories.keyboard} limit={8} setCategory={setKeyboards} setCategoryLoading={setIsKbLoading} pagination={keyboards.meta.pagination} /> : "" : ""}
+      {keyboards.meta ? (
+        keyboards.meta.pagination.total_pages !== 1 ? (
+          <Pagination
+            pages={[...Array(keyboards.meta.pagination.total_pages)]
+              .fill(1)
+              .map((element, index) => index + 1)
+              .slice(0, 5)}
+            fetchCategoryProducts={fetchProducts}
+            categoryId={categories.keyboard}
+            limit={8}
+            setCategory={setKeyboards}
+            setCategoryLoading={setIsKbLoading}
+            pagination={keyboards.meta.pagination}
+            items={keyboards}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
     </>
   );
 }

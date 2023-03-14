@@ -41,7 +41,27 @@ export default function Memory() {
           </div>
         </>
       )}
-      {memory.meta ? memory.meta.pagination.total_pages !== 1 ? <Pagination pages={[...Array(memory.meta.pagination.total_pages)].fill(1).map((element, index) => index + 1)} fetchCategoryProducts={fetchProducts} categoryId={categories.memory} limit={8} setCategory={setMemory} setCategoryLoading={setIsMemoryLoading} pagination={memory.meta.pagination} /> : "" : ""}
+      {memory.meta ? (
+        memory.meta.pagination.total_pages !== 1 ? (
+          <Pagination
+            pages={[...Array(memory.meta.pagination.total_pages)]
+              .fill(1)
+              .map((element, index) => index + 1)
+              .slice(0, 5)}
+            fetchCategoryProducts={fetchProducts}
+            categoryId={categories.memory}
+            limit={8}
+            setCategory={setMemory}
+            setCategoryLoading={setIsMemoryLoading}
+            pagination={memory.meta.pagination}
+            items={memory}
+          />
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
     </>
   );
 }
